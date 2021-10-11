@@ -71,12 +71,23 @@ for x in range(0, 400):
 
 im.save(outPng)
 
-for x in range(0, 400):
-    for y in range(0, 450):
-        tuple = px[x, y]
-        try:
-            biome = expectedC[str(tuple)]
-        except KeyError:
-            biome = expectedC[str(bestDistance(tuple))]
+print("[")
 
-    # print("[", x, ", ", y, ", ", biome, "]")
+for y in range(0, 450):
+    print("[", end='')
+    for x in range(0, 400):
+        px_tuple = px[x, y]
+
+        try:
+            biome = expectedC[str(px_tuple)]
+        except KeyError:
+            biome = expectedC[str(bestDistance(px_tuple))]
+        if x < 400:
+            print(biome, end='')
+            if x != 399:
+                print(", ", end='')
+    print("]", end='')
+    if y != 449:
+        print(",")
+print()
+print("]", end='')
