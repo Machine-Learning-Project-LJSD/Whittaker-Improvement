@@ -80,12 +80,14 @@ const temperateRainForest = new Tetragon(
 );
 
 const borealForest = new Tetragon(
-    new vec2(-.5, 20.0),
-    new vec2(1.5, 300.0),
+    new vec2(-3.5, 20.0),
+    new vec2(-3.5, 300.0),
     new vec2(10.0, 300.0),
     new vec2(6.0, 50.0)
 
 );
+
+
 
 
 
@@ -111,12 +113,31 @@ function pointInsideOfTetragon(point, r){
 }
 
 
+const a = new vec2(-10,0);
+const b = new vec2(5,500);
+const c = new vec2(-1,20);
+const d = new vec2(-3,0);
+const e = new vec2(0,10);
+const f = new vec2(21,50);
+const g = new vec2(18,0);
+const i = new vec2(21.5,125.0);
+const j = new vec2(7.0, 170.0);
+const k = new vec2(5.0, 48.0);
+const m = new vec2(22.0, 240.0);
+const n = new vec2(200.0, 1061.0);
+const o = new vec2(25.0, 500.0);
+const p = new vec2(11.0, 500.0);
+const q = new vec2(200.0, 140.0);
+const r = new vec2(0.0, 500.0);
+
+
 
 
 
 function getBiome(temperature, precipitation) {
     point = new vec2(temperature, precipitation);
     if (temperature <= -2.0) return 1;
+    if (pointInsideOfTetragon(point, borealForest)) return 9;
     if (pointInsideOfTriangle(point, grassland)) return 2;
     if (pointInsideOfTriangle(point, woodland)) return 3;
     if (pointInsideOfTetragon(point, temperateSeasonalForest)) return 4;
@@ -124,7 +145,6 @@ function getBiome(temperature, precipitation) {
     if (pointInsideOfTetragon(point, tropicalRainForest)) return 6;
     if (pointInsideOfTetragon(point, savanna)) return 7;
     if (pointInsideOfTetragon(point, subtropicalDesert)) return 8;
-    if (pointInsideOfTetragon(point, borealForest)) return 9;
     return 0;
 }
 
