@@ -44,7 +44,7 @@ const k = new vec2(5.0, 48.0);
 const m = new vec2(22.0, 240.0);
 const n = new vec2(200.0, 1061.0);
 const o = new vec2(25.0, 500.0);
-const p = new vec2(11.0, 500.0);
+const p = new vec2(13.0, 500.0);
 const q = new vec2(200.0, 140.0);
 const r = new vec2(0.0, 500.0);
 const s = new vec2(200,500);
@@ -125,6 +125,7 @@ function pointInsideOfTetragon(point, r) {
 
 
 function getBiome(temperature, precipitation) {
+    if(temperature<-2.50) return 1;
     point = new vec2(temperature, precipitation);
     if (pointInsideOfTetragon(point, tundra)) return 1;
     if (pointInsideOfTetragon(point, borealForest)) return 9;
