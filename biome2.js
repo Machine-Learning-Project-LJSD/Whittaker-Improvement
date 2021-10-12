@@ -32,7 +32,7 @@ class Triangle {
 
 
 const a = new vec2(-10, 0);
-const b = new vec2(5, 500);
+const b = new vec2(2, 500);
 const c = new vec2(-1, 20);
 const d = new vec2(-3, 0);
 const e = new vec2(-2, 10);
@@ -52,15 +52,15 @@ const t = new vec2(200,0);
 
 
 
-const tundra = new Tetragon({
-    a, r, c, d
-});
+const tundra = new Tetragon(
+    a,b,c,d
+);
 
-const grassland = new Triangle(
+const grassland = new Tetragon(
     d, e, f, g
 );
 
-const woodland = new Triangle(
+const woodland = new Tetragon(
     e, c, i, f
 );
 
@@ -126,10 +126,10 @@ function pointInsideOfTetragon(point, r) {
 
 function getBiome(temperature, precipitation) {
     point = new vec2(temperature, precipitation);
-    if (temperature <= -2.0) return 1;
+    if (pointInsideOfTetragon(point, tundra)) return 1;
     if (pointInsideOfTetragon(point, borealForest)) return 9;
-    if (pointInsideOfTriangle(point, grassland)) return 2;
-    if (pointInsideOfTriangle(point, woodland)) return 3;
+    if (pointInsideOfTetragon(point, grassland)) return 2;
+    if (pointInsideOfTetragon(point, woodland)) return 3;
     if (pointInsideOfTetragon(point, temperateSeasonalForest)) return 4;
     if (pointInsideOfTetragon(point, temperateRainForest)) return 5;
     if (pointInsideOfTetragon(point, tropicalRainForest)) return 6;
