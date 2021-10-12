@@ -1,4 +1,3 @@
-
 class vec2 {
 
     constructor(x, y) {
@@ -6,8 +5,8 @@ class vec2 {
         this.y = y;
     }
 
-    remove(vector){
-        return new vec2((this.x - vector.x), (this.y - vector.y) );
+    remove(vector) {
+        return new vec2((this.x - vector.x), (this.y - vector.y));
     }
 }
 
@@ -21,6 +20,7 @@ class Tetragon {
 }
 
 
+
 class Triangle {
     constructor(a, b, c) {
         this.a = a;
@@ -30,97 +30,15 @@ class Triangle {
 }
 
 
-const temperateSeasonalForest = new Tetragon(
-    new vec2(6.0, 50.0),
-    new vec2(7.0, 180.0),
-    new vec2(22.0, 230.0),
-    new vec2(21.0, 120.0)
-);
-const woodland = new Triangle(
-    new vec2(-3.0, 0.0),
-    new vec2(21.0, 120.0),
-    new vec2(20.5, 50.0)
-);
 
-const grassland = new Triangle(
-    new vec2(-3.0, 0.0),
-    new vec2(20.5, 50.0),
-    new vec2(22.0, 50.0)
-);
-
-const subtropicalDesert = new Tetragon(
-    new vec2(20.5, 50.0),
-    new vec2(35.0, 100.0),
-    new vec2(35.0, 0.0),
-    new vec2(22.0, 50.0)
-
-);
-
-const savanna = new Tetragon(
-    new vec2(20.5, 50.0),
-    new vec2(22.0, 230.0),
-    new vec2(33.0, 290.0),
-    new vec2(35.0, 100.0)
-);
-
-
-const tropicalRainForest = new Tetragon(
-    new vec2(22.0, 230.0),
-    new vec2(22.5, 450.0),
-    new vec2(33.0, 450.0),
-    new vec2(35.0, 290.0)
-);
-
-const temperateRainForest = new Tetragon(
-    new vec2(7.0, 180.0),
-    new vec2(10.0, 300.0),
-    new vec2(22.5, 350.0),
-    new vec2(22.0, 230.0)
-
-);
-
-const borealForest = new Tetragon(
-    new vec2(-3.5, 20.0),
-    new vec2(-3.5, 300.0),
-    new vec2(10.0, 300.0),
-    new vec2(6.0, 50.0)
-
-);
-
-
-
-
-
-function d2Cross(a, b){
-    return a.x * b.y - b.x * a.y;
-}
-
-
-
-function sameSide(p1, p2, a, b){
-    cp1 = d2Cross(b.remove(a) , p1.remove(a));                 //cp1 = d2Cross(b - a, p1 - a);
-    cp2 = d2Cross(b.remove(a) , p2.remove(a));                     //cp2 = d2Cross(b - a, p2 - a);
-    return cp1 * cp2 >= 0.0;
-}
-
-
-function pointInsideOfTriangle(point, t){
-    return sameSide(point, t.a, t.b, t.c) && sameSide(point, t.b, t.a, t.c) && sameSide(point, t.c, t.a, t.b);
-}
-
-function pointInsideOfTetragon(point, r){
-    return pointInsideOfTriangle(point, new Triangle(r.a, r.b, r.c)) || pointInsideOfTriangle(point, new Triangle(r.a, r.c, r.d));
-}
-
-
-const a = new vec2(-10,0);
-const b = new vec2(5,500);
-const c = new vec2(-1,20);
-const d = new vec2(-3,0);
-const e = new vec2(0,10);
-const f = new vec2(21,50);
-const g = new vec2(18,0);
-const i = new vec2(21.5,125.0);
+const a = new vec2(-10, 0);
+const b = new vec2(5, 500);
+const c = new vec2(-1, 20);
+const d = new vec2(-3, 0);
+const e = new vec2(-2, 10);
+const f = new vec2(21, 50);
+const g = new vec2(18, 0);
+const i = new vec2(21.5, 125.0);
 const j = new vec2(7.0, 170.0);
 const k = new vec2(5.0, 48.0);
 const m = new vec2(22.0, 240.0);
@@ -129,6 +47,78 @@ const o = new vec2(25.0, 500.0);
 const p = new vec2(11.0, 500.0);
 const q = new vec2(200.0, 140.0);
 const r = new vec2(0.0, 500.0);
+const s = new vec2(200,500);
+const t = new vec2(200,0);
+
+
+
+const tundra = new Tetragon({
+    a, r, c, d
+});
+
+const grassland = new Triangle(
+    d, e, f, g
+);
+
+const woodland = new Triangle(
+    e, c, i, f
+);
+
+const temperateSeasonalForest = new Tetragon(
+    k, j, m, i
+);
+
+
+const temperateRainForest = new Tetragon(
+    j, p, o, m
+
+);
+
+const tropicalRainForest = new Tetragon(
+    m, o, s, n
+);
+
+const savanna = new Tetragon(
+    f,m,n,q
+);
+
+const subtropicalDesert = new Tetragon(
+    g,f,q,t
+);
+
+
+
+
+const borealForest = new Tetragon(
+    c,b,p,k
+
+);
+
+
+
+
+
+function d2Cross(a, b) {
+    return a.x * b.y - b.x * a.y;
+}
+
+
+
+function sameSide(p1, p2, a, b) {
+    cp1 = d2Cross(b.remove(a), p1.remove(a));                 //cp1 = d2Cross(b - a, p1 - a);
+    cp2 = d2Cross(b.remove(a), p2.remove(a));                     //cp2 = d2Cross(b - a, p2 - a);
+    return cp1 * cp2 >= 0.0;
+}
+
+
+function pointInsideOfTriangle(point, t) {
+    return sameSide(point, t.a, t.b, t.c) && sameSide(point, t.b, t.a, t.c) && sameSide(point, t.c, t.a, t.b);
+}
+
+function pointInsideOfTetragon(point, r) {
+    return pointInsideOfTriangle(point, new Triangle(r.a, r.b, r.c)) || pointInsideOfTriangle(point, new Triangle(r.a, r.c, r.d));
+}
+
 
 
 
@@ -151,16 +141,17 @@ function getBiome(temperature, precipitation) {
 
 
 
-
-for (p = 0; p < 450; p++) {
+(()=>{
+for (let p = 0; p < 450; p++) {
     tA = [];
-    for (t = -10; t < 45; t++) {
+    for (let t = -10; t < 45; t++) {
         tA.push(getBiome(t, p));
     }
     process.stdout.write(JSON.stringify(tA));
     process.stdout.write("\n");
 
 }
+})();
 
  //console.log(getBiome(2,100))
 
