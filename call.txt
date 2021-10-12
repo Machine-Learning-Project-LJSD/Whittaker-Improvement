@@ -1,0 +1,16 @@
+a = getArray(out.txt);
+
+function biome(t,p){
+  return a[a.length-t-1][p]
+}
+
+b = getArray(out2.txt);
+
+function biome(t,p){
+  return b[(t*10) + 400*(449-p)];
+}
+
+[1,2,3,4,5],
+[6,7,8,9,0],
+[6,7,8,9,0],
+[2][3] = 9 

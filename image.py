@@ -74,7 +74,7 @@ im.save(outPng)
 print("[")
 
 for y in range(0, 450):
-    print("[", end='')
+   # print("[", end='')
     for x in range(0, 400):
         px_tuple = px[x, y]
 
@@ -86,7 +86,7 @@ for y in range(0, 450):
             print(biome, end='')
             if x != 399:
                 print(", ", end='')
-    print("]", end='')
+     #print("]", end='')
     if y != 449:
         print(",")
 print()
